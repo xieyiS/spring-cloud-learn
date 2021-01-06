@@ -16,3 +16,7 @@ eureka:
 ribbon:
   ConnectTimeout: 5000 #建立连接等待时长
   ReadTimeout:  5000 #建立连接后读取资源等待时长
+
+logging:
+  level:
+    com.atguigu.springcloud.service.PaymentFeignService: debug #开启OpenFeign日志打印功能
