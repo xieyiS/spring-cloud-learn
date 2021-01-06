@@ -26,3 +26,5 @@ eureka:
   instance:
     instance-id: payment8001 #服务名称
     prefer-ip-address: true #访问信息有ip信息提示
+    lease-renewal-interval-in-seconds: 1 #客户端向服务端发送心跳包的时间间隔
+    lease-expiration-duration-in-seconds: 2 #服务端在最后一次收到心跳包后等待的时间上限
