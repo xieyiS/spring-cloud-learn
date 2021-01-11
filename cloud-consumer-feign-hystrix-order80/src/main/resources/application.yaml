@@ -1,0 +1,32 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: false    #表识不向注册中心注册自己
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+
+spring:
+  application:
+    name: cloud-provider-hystrix-order
+
+ribbon:
+  ReadTimeout:  5000
+  ConnectTimeout: 5000
+
+feign:
+  hystrix:
+    enabled: true #如果处理自身的容错就开启。开启方式与生产端不一样。
+
+hystrix:
+  command:
+    #default: #针对全部
+    PaymentHystrixService#paymentInfo_TimeOut(Integer): #针对某个@FeignClient标注的类的某个方法
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #解决feign:hystrix:enabled:true以后只会进入熔断方法的问题
+
+
