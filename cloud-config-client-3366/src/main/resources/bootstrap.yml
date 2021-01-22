@@ -1,0 +1,30 @@
+#config客户端,使用bootstrap.yml,其优先级高于application.yml,并且不会被application.yml的内容所覆盖
+server:
+  port: 3366
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: main #分支名
+      name: config #config-test(官方所给的形式之一)
+      profile: test
+      uri: http://localhost:3344 #config服务端地址
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

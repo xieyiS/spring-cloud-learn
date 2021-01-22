@@ -8,13 +8,24 @@ spring:
     config:
       server:
         git:
-          uri:  git@github.com:xieyiS/sprincloud-config.git
-          search-paths:
+          uri:  git@github.com:xieyiS/sprincloud-config.git #git地址(ssh)
+          search-paths: #仓库名
             - springcloud-config
-
-      label: main
+      label: main #分支名
+#使用rabbitmq消息通知
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
     service-url:
       defaultZone:  http://localhost:7001/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh' #暴露bus刷新配置的端点
